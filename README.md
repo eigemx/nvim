@@ -1,2 +1,3 @@
 # nvim
-My neovim config
+My Neovim config.
+Neovim is love ❤️.
