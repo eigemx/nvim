@@ -28,5 +28,5 @@ require("options") -- leader must be set before calling lazy
 require("mappings")
 require("lazy").setup("plugins")
 
--- kanagawa | rose-pine | catppuccin
-vim.cmd("colorscheme rose-pine")
+-- kanagawa | rose-pine | catppuccin | poimandres | gruvbox-baby | kanagawa-paper
+vim.cmd("colorscheme kanagawa-paper")
