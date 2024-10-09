@@ -28,5 +28,6 @@ require("options") -- leader must be set before calling lazy
 require("mappings")
 require("lazy").setup("plugins")
 
--- kanagawa | rose-pine | catppuccin | poimandres | gruvbox-baby | kanagawa-paper | github
-vim.cmd("colorscheme kanagawa-paper")
+-- kanagawa | rose-pine | catppuccin | poimandres | gruvbox-baby | kanagawa-paper | github 
+--vim.cmd("set termguicolors") -- important for falcon theme
+vim.cmd("colorscheme lackluster-hack")
