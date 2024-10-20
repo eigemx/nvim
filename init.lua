@@ -30,4 +30,4 @@ require("lazy").setup("plugins")
 
 -- kanagawa | rose-pine | catppuccin | poimandres | gruvbox-baby | kanagawa-paper | github | lackluster-night | vague | falcon
 --vim.cmd("set termguicolors") -- important for falcon theme
-vim.cmd("colorscheme lackluster-night")
+vim.cmd("colorscheme rose-pine")

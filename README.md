@@ -1,2 +1,1 @@
-My Neovim config.
-Neovim is love ❤️.
+My Neovim ❤️ config.

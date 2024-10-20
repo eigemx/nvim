@@ -6,7 +6,7 @@ return {
     require('lualine').setup({
     options = {
       --theme = 'kanagawa-paper',
-      theme = 'lackluster'
+      theme = 'rose-pine',
     }
     })
   end
