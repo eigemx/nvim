@@ -4,7 +4,7 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.cmd("highlight ColorColumn ctermbg=darkgrey")
-vim.cmd("set colorcolumn=88")
+vim.cmd("set colorcolumn=100")
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
