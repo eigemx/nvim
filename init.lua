@@ -29,6 +29,6 @@ require("mappings")
 require("lazy").setup("plugins")
 
 -- kanagawa | rose-pine | catppuccin |  gruvbox-baby | kanagawa-paper |
--- github | lackluster-night | jellybeans | aquarium
+-- github | lackluster-night | jellybeans | aquarium | neomodern
 --vim.cmd("set termguicolors") -- important for falcon theme
-vim.cmd("colorscheme jellybeans-muted")
+vim.cmd("colorscheme catppuccin-mocha")

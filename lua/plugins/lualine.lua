@@ -5,8 +5,8 @@ return {
         --local kanagawa_paper = require("lualine.themes.kanagawa-paper")
         require("lualine").setup({
             options = {
-                --theme = 'kanagawa',
-                theme = "codedark",
+                theme = 'kanagawa',
+                --theme = "codedark",
             },
         })
     end,
