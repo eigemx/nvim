@@ -17,17 +17,30 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({ capabilities = capabilities })
-			lspconfig.pyright.setup({ capabilities = capabilities })
-			lspconfig.clangd.setup({ capabilities = capabilities })
-            lspconfig.ts_ls.setup({ capabilities = capabilities })
+
+			vim.lsp.config('lua_ls', {
+				capabilities = capabilities,
+			})
+			vim.lsp.config('pyright', {
+				capabilities = capabilities,
+			})
+			vim.lsp.config('clangd', {
+				capabilities = capabilities,
+			})
+			vim.lsp.config('ts_ls', {
+				capabilities = capabilities,
+			})
+
+			vim.lsp.enable('lua_ls')
+			vim.lsp.enable('pyright')
+			vim.lsp.enable('clangd')
+			vim.lsp.enable('ts_ls')
 
 			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-            vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
+			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
 			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {})
