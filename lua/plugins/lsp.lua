@@ -1,50 +1,54 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup()
+
+			local registry = require("mason-registry")
+			for _, tool in ipairs({ "ruff", "prettierd", "markdownlint-cli2", "stylua" }) do
+				local ok, pkg = pcall(registry.get_package, tool)
+				if ok and not pkg:is_installed() then
+					pkg:install()
+				end
+			end
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "pyright", "ts_ls" },
+				ensure_installed = { "lua_ls", "clangd", "pyright" },
+				automatic_enable = { exclude = { "stylua" } },
 			})
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			vim.lsp.enable({ "lua_ls", "clangd", "pyright" })
 
-			vim.lsp.config('lua_ls', {
-				capabilities = capabilities,
-			})
-			vim.lsp.config('pyright', {
-				capabilities = capabilities,
-			})
-			vim.lsp.config('clangd', {
-				capabilities = capabilities,
-			})
-			vim.lsp.config('ts_ls', {
-				capabilities = capabilities,
+			vim.diagnostic.config({
+				virtual_text = true,
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
 			})
 
-			vim.lsp.enable('lua_ls')
-			vim.lsp.enable('pyright')
-			vim.lsp.enable('clangd')
-			vim.lsp.enable('ts_ls')
-
-			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, {})
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
-			vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, {})
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {})
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, {})
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+				callback = function()
+					local map = function(lhs, rhs, desc)
+						vim.keymap.set("n", lhs, rhs, { desc = "LSP: " .. desc })
+					end
+					map("<leader>r", vim.lsp.buf.rename, "[R]ename")
+					map("K", vim.lsp.buf.hover, "Hover docs")
+					map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
+					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+				end,
+			})
 		end,
 	},
 }

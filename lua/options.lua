@@ -1,10 +1,15 @@
 vim.g.mapleader = " "
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
---vim.cmd("highlight ColorColumn ctermbg=darkgrey")
---vim.cmd("set colorcolumn=100")
+vim.g.maplocalleader = " "
+
+-- Disable netrw (nvim-tree's job)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Indentation
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
@@ -43,6 +48,9 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Keep signcolumn visible so diagnostics don't shift the layout
+vim.opt.signcolumn = "yes"
 
 -- Set relative line numbers
 vim.opt.relativenumber = true
