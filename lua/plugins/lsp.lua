@@ -37,7 +37,14 @@ return {
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-				callback = function()
+				callback = function(args)
+					-- rely on treesitter for colors everywhere; clangd's semantic
+					-- tokens stack extra highlight groups in C++ and look noisy
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client and client.server_capabilities then
+						client.server_capabilities.semanticTokensProvider = nil
+					end
+
 					local map = function(lhs, rhs, desc)
 						vim.keymap.set("n", lhs, rhs, { desc = "LSP: " .. desc })
 					end
