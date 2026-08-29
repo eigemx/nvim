@@ -7,6 +7,9 @@ return {
             options = {
                 theme = 'auto',
                 --theme = "codedark",
+                disabled_filetypes = {
+                    statusline = { 'NvimTree' },
+                },
             },
         })
     end,
