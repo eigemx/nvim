@@ -38,16 +38,4 @@ return {
 	{ "tiagovla/tokyodark.nvim", lazy = false },
 	{ "vague-theme/vague.nvim", lazy = false },
 	{ "scottmckendry/cyberdream.nvim", lazy = false },
-	{
-		dir = "/home/eigemx/code/sector.nvim",
-		name = "sector",
-		lazy = false,
-		priority = 1000,
-	},
-	{
-		dir = "/home/eigemx/code/zen.nvim",
-		name = "zen",
-		lazy = false,
-		priority = 1000,
-	},
 }
